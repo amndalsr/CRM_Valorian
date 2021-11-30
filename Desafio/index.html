@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini CRM</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body ng-controller="CRMController">
+
+
+    <div class="vendas">
+
+        <h1>Suas Vendas</h1>
+
+        <input id="date" type="date" ng-model="dataSelecionada">
+
+        <select id="state" class="form-control" name="state" ng-model="estadoSelecionado">
+            <option value="">UF</option>
+            <option title="Acre" value="AC">AC</option>
+            <option title="Alagoas" value="AL">AL</option>
+            <option title="Amapá" value="AP">AP</option>
+            <option title="Amazonas" value="AM">AM</option>
+            <option title="Bahia" value="BA">BA</option>
+            <option title="Ceará" value="CE">CE</option>
+            <option title="Distrito Federal" value="DF">DF</option>
+            <option title="Espírito Santo" value="ES">ES</option>
+            <option title="Goiás" value="GO">GO</option>
+            <option title="Maranhão" value="MA">MA</option>
+            <option title="Mato Grosso" value="MT">MT</option>
+            <option title="Mato Grosso do Sul" value="MS">MS</option>
+            <option title="Minas Gerais" value="MG">MG</option>
+            <option title="Pará" value="PA">PA</option>
+            <option title="Paraíba" value="PB">PB</option>
+            <option title="Paraná" value="PR">PR</option>
+            <option title="Pernambuco" value="PE">PE</option>
+            <option title="Piauí" value="PI">PI</option>
+            <option title="Rio de Janeiro" value="RJ">RJ</option>
+            <option title="Rio Grande do Norte" value="RN">RN</option>
+            <option title="Rio Grande do Sul" value="RS">RS</option>
+            <option title="Rondônia" value="RO">RO</option>
+            <option title="Roraima" value="RR">RR</option>
+            <option title="Santa Catarina" value="SC">SC</option>
+            <option title="São Paulo" value="SP">SP</option>
+            <option title="Sergipe" value="SE">SE</option>
+            <option title="Tocantins" value="TO">TO</option>
+        </select>
+
+        <h3>Total de vendas no período</h3>
+        <h1 ng-if="totalVendas" id="valor">R$ {{totalVendas.toLocaleString(undefined, {minimumFractionDigits: 2 })}}</h1>
+
+    </div>
+
+    <div class="title">
+        <h2>Meu Mini</h2>
+        <h1>CRM</h1>
+    </div>
+    
+    <div class="logo">
+        <h3>by <strong>VALORIAN</strong></h3>
+    </div>
+
+    
+
+    <div class="b1">
+        <button id="botao1">Conecte sua planilha de vendas</button>
+    </div>
+    
+
+    <div class="info">
+        <table>
+            <thead>
+                <tr> 
+                    <th class="th"><input type="checkbox"></th>
+                    <th class="th">Nome do cliente</th>
+                    <th class="th">Data da venda</th>
+                    <th class="th">valor</th>
+                    <th class="th">origem do cliente</th>
+                    <th class="th">país</th>
+                    <th class="th">estado do cliente</th>
+                    <th class="th">sexo do cliente</th>
+                    <th class="th">idade do cliente</th>
+                </tr>
+            </thead>
+
+        
+
+            <tbody>
+                
+                <tr>
+                    <td colspan="9" align="center">
+                        <button ng-click="modal.open = true" type="button"  class="b2"><i class="uil uil-plus"></i>Adicionar venda</button>
+                    </td>
+                </tr>
+
+                <tr ng-if="!dataSelecionada && !estadoSelecionado" ng-repeat="venda in listaVendas track by $index"> 
+                    <td class="td"><input type="checkbox" ng-model="venda.checked"></th>
+                    <td class="td">{{venda.nome}}</td>
+                    <td class="td">{{venda.data | date:'dd/MM/yyyy'}}</td>
+                    <td class="td">R$ {{venda.valor.toLocaleString(undefined, { minimumFractionDigits: 2 })}}</td>
+                    <td class="td">{{venda.origem}}</td>
+                    <td class="td">{{venda.pais}}</td>
+                    <td class="td">{{venda.estado}}</td>
+                    <td class="td">{{venda.sexo}}</td>
+                    <td class="td">{{venda.idade}}</td>
+                </tr>
+
+                <tr ng-if="dataSelecionada || estadoSelecionado" ng-repeat="venda in filterBy() track by $index"> 
+                    <td class="td"><input type="checkbox" ng-model="venda.checked"></th>
+                    <td class="td">{{venda.nome}}</td>
+                    <td class="td">{{venda.data | date:'dd/MM/yyyy'}}</td>
+                    <td class="td">R$ {{venda.valor.toLocaleString(undefined, { minimumFractionDigits: 2 })}}</td>
+                    <td class="td">{{venda.origem}}</td>
+                    <td class="td">{{venda.pais}}</td>
+                    <td class="td">{{venda.estado}}</td>
+                    <td class="td">{{venda.sexo}}</td>
+                    <td class="td">{{venda.idade}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+   
+
+
+
+
+    <div class="modal" ng-class="{ 'active': modal.open }">
+        <div class="modal-content">
+            <header class="modal-header">
+                <h2>Nova Venda</h2>
+                <span ng-click="modal.open = false" class="modal-close" id="modalClose">&#10006;</span>
+            </header>
+            <form class="modal-form">
+                <input type="text" class="modal-field" placeholder="Nome do Cliente" ng-model="vendaCadastrar.nome">
+                <input type="date" class="modal-field" placeholder="Data da venda" ng-model="vendaCadastrar.data">
+                <input type="number" class="modal-field" placeholder="Valor" ng-model="vendaCadastrar.valor">
+                <select name="origem" class="modal-field" ng-model="vendaCadastrar.origem">
+                    <option value="">Origem do cliente</option>
+                    <option value="Facebook Ads">Facebook Ads</option>
+                </select>
+                <input type="text" class="modal-field" placeholder="País" ng-model="vendaCadastrar.pais">
+                <select name="estado" class="modal-field" ng-model="vendaCadastrar.estado">
+                    <option value="">Estado do Cliente</option>
+                    <option ng-repeat="estado in estados" ng-value="estado.sigla" ng-selected="{{estado.sigla == vendaCadastrar.estado}}">{{estado.nome}}</option>
+                </select>
+                <select name="sexoDoCliente" class="modal-field" ng-model="vendaCadastrar.sexo">
+                    <option value="">Sexo do Cliente</option>
+                    <option value="Feminino">Feminino</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Outro">Outro</option>
+                </select>
+                <select name="idadeDoCliente" class="modal-field" ng-model="vendaCadastrar.idade">
+                    <option value="">Idade do Cliente</option>
+                    <option value="20-30 anos">20-30 anos</option>
+                    <option value="30-40 anos">30-40 anos</option>
+                    <option value="40-50 anos">40-50 anos</option>
+                    <option value="50-60 anos">50-60 anos</option>
+                    <option value="Outra">Outra</option>
+                </select>
+            </form>
+            <footer class="modal-footer">
+                <button ng-click="adicionarVenda()" class="buttong">Salvar</button>
+                <button ng-click="modal.open = false" class="buttonb">Cancelar</button>
+            </footer>
+        </div>
+    </div>
+
+
+</body>
+</html>

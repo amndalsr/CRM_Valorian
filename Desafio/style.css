@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&family=Poppins:wght@100&family=Zen+Dots&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+body{
+    background: #e7e5e5;
+}
+
+.vendas{
+    margin-top: 40px;
+    margin-left: 30px;
+    display: inline-block;
+}
+.vendas h1{
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    margin-bottom: 1rem;
+}
+#date{
+    border: none;
+    background: #e7e5e5;
+    font-family: 'Opens Sans', sans-serif;
+    margin-bottom: 1rem;
+}
+#state{
+    border: none;
+    background: #e7e5e5;
+    font-family: 'Opens Sans', sans-serif;
+    margin-bottom: 1rem;
+}
+.vendas h3{
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+}
+
+.title{
+    margin-top: 20px;
+    display: inline-block;
+    justify-content: center;
+    margin-left: 55vh;
+    vertical-align: top;
+}
+.title h2{
+    color: rebeccapurple;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    margin-left: 35px;
+}
+.title h1{
+    color: rebeccapurple;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 70px;
+    font-weight: 900;
+}
+
+.logo{
+    height: 3rem;
+    position: fixed;
+    right: 2rem;
+    top: 2rem;
+    display: inline-block;
+    vertical-align: top;
+}
+.logo h3{
+    color: blueviolet;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+}
+.logo h3 strong{
+    color: rgb(72, 165, 202);
+    font-family: 'Zen Dots', sans-serif;
+    font-size: 18px;
+    font-weight: 100;
+}
+
+#valor{
+    margin-left: 10px;
+    color: rgb(31, 197, 72);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 26px;
+    font-weight: 200;
+}
+
+.b1 #botao1{
+    padding: 8px;
+    border: none;
+    border-radius: 4rem;
+    background-color: rebeccapurple;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    vertical-align: bottom;
+    right: 4rem;
+    top: 14rem;
+    margin-left: 1000px;
+    cursor: pointer;
+}
+
+.info{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 30vh;
+}
+.info .th{
+    border: none;
+    box-shadow: rgba(29, 28, 28, 0.39) 4px 4px 4px;
+    padding: 14px;
+
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    font-size: 10px;
+}
+.b2{
+    margin-top: 1.3rem;
+    width: 400px;
+    height: 30px;
+    border: none;
+    border-radius: 4rem;
+    background-color: rgb(31, 197, 72);
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 1.3rem;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.info .td{
+    border: none;
+    box-shadow: rgba(29, 28, 28, 0.219) 4px 4px 4px;
+    padding: 14px;
+    vertical-align: middle;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.modal{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: #00000090;
+    opacity: 0;
+    z-index: -1;
+}
+
+.modal.active{
+    opacity: 1;
+    z-index: 1;
+}
+
+.modal-content{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    width: 60vw;
+    margin: 15vh auto;
+    padding-bottom: 20px;
+    background-color: white;
+    box-shadow: 1px 1px 10px black;
+    border-radius: 8px;
+}
+
+.modal-header{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    height: 40px;
+    line-height: 40px;
+    font-size: 1rem;
+}
+.modal-header h2{
+    font-family: 'Opens Sans', sans-serif;
+    color: rebeccapurple;
+}
+
+
+.modal-close{
+    position: absolute;
+    right: 0;
+    display: block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    user-select: none;
+    cursor: pointer;
+}
+
+.modal-close:hover{
+    background-color: #FF4949;
+    color: white;
+    border-radius: 8px;
+}
+
+.modal-form{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.modal-field{
+    width: calc(50% - 10px);
+    height: 40px;
+    outline-style: none;
+    border-style: none;
+    box-shadow: 0 0 2px rgb(45, 16, 65);
+    padding: 0 10px;
+    font-size:1rem;
+}
+
+.modal-field:focus{
+    border: 2px solid rebeccapurple;
+    box-shadow: 0 0 3px rgb(159, 98, 219);
+}
+
+
+.modal-footer{
+    background-color: inherit;
+    text-align: right;
+    padding: 0 20px;
+}
+.modal-footer .buttong{
+    width: 100px;
+    height: 30px;
+    border: none;
+    border-radius: 3rem;
+    background: #4dca5e;
+
+    color: white;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+}
+.modal-footer .buttong:hover{
+    background: #35b146;
+}
+
+.modal-footer .buttonb{
+    width: 100px;
+    height: 30px;
+    border: none;
+    border-radius: 3rem;
+    background: #7064d4;
+
+    color: white;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+}
+.modal-footer .buttonb:hover{
+    background: #6e4bbe;
+}
+
