@@ -1,4 +1,4 @@
-<h1 align="center">Mini CRM Valorian 📈</h1>
+<h1 align="center">📈 Mini CRM Valorian </h1>
 
 
 <h2 align="center">Desafio: criar um sistema de cadastro de vendas.</h2>
